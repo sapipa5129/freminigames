@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adivina el Número</title>
+  <link rel="stylesheet" href="styleadivina.css" />
+
+</head>
+<body>
+  <a href="index.html" class="volver">⬅ Volver al menú</a>
+
+  <main class="container">
+    <h1>Adivina el Número 🔢</h1>
+    <h2 id="record">Récord: —</h2>
+
+    <section class="setup">
+      <label for="difficulty">Dificultad:</label>
+      <select id="difficulty">
+        <option value="easy">Fácil (1-10)</option>
+        <option value="medium">Media (1-50)</option>
+        <option value="hard">Difícil (1-100)</option>
+      </select>
+      <button id="start-btn">Jugar</button>
+    </section>
+
+    <section id="game" class="hidden">
+      <input type="number" id="guess" placeholder="Tu número..." />
+      <button id="guess-btn">Adivinar</button>
+      <p id="message"></p>
+      <p>Intentos: <span id="tries">0</span></p>
+    </section>
+
+    <p id="result" class="hidden"></p>
+    <button id="restart-btn" class="hidden">Volver a jugar</button>
+  </main>
+  <script src="scriptadivina.js"></script>
+</body>
+</html>

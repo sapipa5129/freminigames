@@ -1,0 +1,67 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #f0f8ff;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+#difficulty-selector button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.info {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.board {
+  display: grid;
+  grid-gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  width: 60px;
+  height: 60px;
+  background-color: #1e90ff;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.card.flipped {
+  background-color: #fff;
+  color: #1e90ff;
+  border: 2px solid #1e90ff;
+}
+
+
+.volver {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  z-index: 1000;
+  transition: background 0.3s;
+}
+
+.volver:hover {
+  background: #555;
+}

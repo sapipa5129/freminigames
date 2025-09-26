@@ -1,0 +1,65 @@
+body {
+  text-align: center;
+  font-family: sans-serif;
+  background-color: #f0f8ff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.hole {
+  width: 100px;
+  height: 100px;
+  background-color: #654321;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.hole.active::before {
+  content: "🐹";
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  font-size: 40px;
+  animation: pop 0.3s ease-in-out;
+}
+
+.hole.trap::before {
+  content: "💩";
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  font-size: 40px;
+  animation: pop 0.3s ease-in-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+
+
+.volver {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  z-index: 1000;
+  transition: background 0.3s;
+}
+
+.volver:hover {
+  background: #555;
+}

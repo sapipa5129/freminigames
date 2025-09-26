@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memorama</title>
+  <link rel="stylesheet" href="stylememorama.css" />
+</head>
+<body>
+  <a href="index.html" class="volver">⬅ Volver al menú</a>
+
+  <h1>Memorama</h1>
+
+  <div id="difficulty-selector">
+    <p>Elige dificultad:</p>
+    <button onclick="startGame('facil')">Fácil</button>
+    <button onclick="startGame('medio')">Medio</button>
+    <button onclick="startGame('dificil')">Difícil</button>
+  </div>
+
+  <div class="info">
+    <span id="score">Puntuación: 0</span>
+    <span id="timer">Tiempo: 0s</span>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <div id="game-over" style="display:none;">
+    <h2>¡Juego terminado!</h2>
+    <p id="final-score"></p>
+    <button onclick="resetGame()">Volver a empezar</button>
+  </div>
+
+  <script src="scriptmemorama.js"></script>
+</body>
+</html>
