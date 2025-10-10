@@ -1,51 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6100113513112124"
-     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
-  <title>Menú de Juegos</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Menú de Videojuegos</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 0 20px;
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1; /* Asegura que esté por encima del canvas */
+    }
+
+    .game-item {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .game-item:hover {
+      transform: scale(1.05);
+    }
+
+    .game-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    #fondoCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Esto lo manda al fondo */
+    }
+
+
+
+  </style>
 </head>
 <body>
+  <header>🎮 Mini-Games Free 🎮</header>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6100113513112124"
-     crossorigin="anonymous"></script>
-<!-- horizontal principal -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6100113513112124"
-     data-ad-slot="4821198059"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  
-  <h1>🎮 Selecciona un juego</h1>
-  <div class="menu">
-    <a href="2048.html" class="juego">2048</a>
-    <a href="adivina.html" class="juego">Adivina el numero</a>
-    <a href="topo.html" class="juego">Atrapa el topo</a>
-    <a href="memorama.html" class="juego">Memorama</a>
-    <a href="ppt.html" class="juego">Piedra papel o tijeras</a>
-    <a href="enraya.html" class="juego">Tres en raya</a>
-    <a href="subway.html" class="juego">SubWay Surfers</a>
-    <a href="amongus.html" class="juego">Among-Us</a>
-    <a href="ballpool.html" class="juego">8 Ball Pool</a>
-    <a href="stackball.html" class="juego">Stack Ball</a>
-    <a href="blumgiball.html" class="juego">Blumgi Ball</a>
-    <a href="bob.html" class="juego">Bob The Robber 4</a>
-    <a href="bubble.html" class="juego">Bubble Shooter</a>
-    <a href="mario.html" class="juego">Super Mario Bros</a>
-    <a href="temple.html" class="juego">Temple Run 2</a>
+  <canvas id="fondoCanvas"></canvas>
+
+  <div class="game-grid">
+    <a href="2048.html" class="game-item">
+      <img src="2048.png" alt="2048">
+    </a>
+        <a href="adivina.html" class="game-item">
+      <img src="adivina.png" alt="adivina el número">
+    </a>
+        <a href="enraya.html" class="game-item">
+      <img src="enraya.png" alt="3 en raya">
+    </a>
+        <a href="memorama.html" class="game-item">
+      <img src="memorama.png" alt="memorama">
+    </a>
+        <a href="ppt.html" class="game-item">
+      <img src="ppt.png" alt="piedra papel o tijeras">
+    </a>
+        <a href="topo.html" class="game-item">
+      <img src="topo.png" alt="atrapa el topo">
+    </a>
+        <a href="stackball.html" class="game-item">
+      <img src="stack.png" alt="stack ball">
+    </a>
+        <a href="bubble.html" class="game-item">
+      <img src="bubble.png" alt="bubble shooter">
+    </a>
+        <a href="ballpool.html" class="game-item">
+      <img src="ballpool.png" alt="8 Ball Pool">
+    </a>
+     </a>
+        <a href="amongus.html" class="game-item">
+      <img src="amongus.png" alt="Among Us">
+    </a>
+     </a>
+        <a href="subway.html" class="game-item">
+      <img src="subway.png" alt="Subway Surfers">
+    </a>
+         </a>
+        <a href="blumgiball.html" class="game-item">
+      <img src="blumgi.png" alt="Blumgi Ball">
+    </a>
+         </a>
+        <a href="bob.html" class="game-item">
+      <img src="bob.png" alt="Bob The Robber 4">
+    </a>
+         </a>
+        <a href="mario.html" class="game-item">
+      <img src="mario.png" alt="Super Mario Bros">
+    </a>
+         </a>
+        <a href="temple.html" class="game-item">
+      <img src="temple.png" alt="Temple Run 2">
+    </a>
+
+    
   </div>
+
+    <script>
+    const canvas = document.getElementById('fondoCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    for (let i = 0; i < 100; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 3 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+    });
+    }
+
+    function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+    requestAnimationFrame(draw);
+    }
+    draw();
+    </script>
+
+
 </body>
 </html>
-
-
-
-
-
-
-
