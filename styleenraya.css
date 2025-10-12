@@ -1,70 +1,197 @@
+/* --- Variables de Color y Estilos Globales --- */
+:root {
+    --color-fondo: #1a2a33;
+    --color-tablero: #1f3641;
+    --color-celda-sombra: #10212a;
+    --color-texto: #dbe8ed;
+    --color-x: #31c3bd;
+    --color-x-sombra: #118c87;
+    --color-o: #f2b137;
+    --color-o-sombra: #cc8b13;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  font-family: sans-serif;
-  text-align: center;
-  background-color: #f9f9f9;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 h1 {
-  margin-top: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-#controls {
-  margin: 10px auto;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  align-items: center;
+/* --- Contenedor Principal del Juego --- */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
-#game {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 5px;
-  margin: 20px auto;
-  width: max-content;
+/* --- Estilos del Tablero --- */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 15px;
+    background-color: var(--color-tablero);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 0 var(--color-celda-sombra);
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
-  background-color: white;
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: 2px solid #333;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-fondo);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: inset 0 -6px 0 var(--color-celda-sombra);
+    transition: background-color 0.2s ease-in-out;
 }
 
-.cell.X {
-  color: blue;
+.cell:hover {
+    background-color: #2c4858;
 }
 
-.cell.O {
-  color: red;
+/* --- Estilos para 'X' y 'O' --- */
+.cell.x::before,
+.cell.x::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 80px;
+    background-color: var(--color-x);
+    border-radius: 5px;
+    box-shadow: 0 4px 0 var(--color-x-sombra);
 }
 
-#status {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+.cell.x::before {
+    transform: rotate(45deg);
 }
 
-
-
-.volver {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #333;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1em;
-  z-index: 1000;
-  transition: background 0.3s;
+.cell.x::after {
+    transform: rotate(-45deg);
 }
 
-.volver:hover {
-  background: #555;
+.cell.circle::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 15px solid var(--color-o);
+    border-radius: 50%;
+    box-shadow: 0 4px 0 var(--color-o-sombra);
+}
+
+/* --- Panel de Opciones de Juego --- */
+.game-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--color-tablero);
+    padding: 20px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 8px 0 var(--color-celda-sombra);
+}
+
+.game-options h2 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.option {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.option label {
+    font-weight: bold;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 80%;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 -4px 0 var(--color-celda-sombra);
+}
+
+button {
+    background-color: var(--color-o);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 8px;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--color-o-sombra);
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ffc860;
+}
+
+/* --- Pantalla de Victoria --- */
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .85);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.winning-message.show {
+    display: flex;
+    opacity: 1;
+}
+
+.winning-message div {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
