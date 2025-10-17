@@ -195,3 +195,16 @@ button:hover {
     font-weight: bold;
     margin-bottom: 1rem;
 }
+
+
+
+.back-button {
+   background-color: #ff5c5c;
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   font-size: 16px;
+   border-radius: 5px;
+   cursor: pointer;
+   text-decoration: none;
+}
